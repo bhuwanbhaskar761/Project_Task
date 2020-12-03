@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view_student</title>
+</head>
+<body>
+<h1>view_student</h1>
+<table>
+    <tr>
+        <thead>
+        <th>Full Name</th>
+        <th>Class</th>
+        <th>Roll no.</th>
+        <th>Address</th>
+        <th>Action</th>
+        </thead>
+    </tr>
+    {% for i in student %}
+    <tr>
+        <tbody>
+        <td>{{i.first_name}} {{i.last_name}}</td>
+        <td>{{i.stu_class}}</td>
+        <td>{{i.roll_no}}</td>
+        <td>{{address}}</td>
+        <td><a href="">Edit</a> <a href="">Delete</a></td>
+        </tbody>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
