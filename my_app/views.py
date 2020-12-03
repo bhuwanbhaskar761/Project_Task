@@ -53,9 +53,22 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'One New student Added successfuly')
             return redirect('view_student')
     d = {'form':form}
     return render(request,'add_student.html',d)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['teacher'])
+def edit_student(request,pid):
+    instance = get_object_or_404(Student, id=pid)
+    form = StudentForm(request.POST or None,instance=instance)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'One student Updated successfuly')
+        return redirect('view_student')
+    d = {'form':form}
+    return render(request,'edit_student.html',d)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['teacher'])
@@ -93,15 +106,36 @@ def signup(request):
 
 def search_student(request):
     student = ""
+    searched = ""
     if request.method == "POST":
         try:
             n = request.POST['name']
-            student  = Student.objects.get(user=User.objects.get(username=n))
+            searched = n
+            student  = Student.objects.get(first_name__icontains=n)
         except:
             try:
                 n = request.POST['name']
+                searched = n
                 student = Student.objects.get(roll_no=n)
             except:
+                n = request.POST['name']
+                searched = n
                 messages.success(request,'Provide accurate name or Roll No')
-    d = {'student':student}
+    d = {'student':student,'searched':searched}
     return render(request,'search_student.html',d)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['teacher'])
+def Logout(request):
+    logout(request)
+    messages.success(request,'You have Logged out.')
+    return redirect('home')
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['teacher'])
+def delete_student(request,pid):
+    student = Student.objects.get(id=pid)
+    student.delete()
+    messages.success(request,'1 data deleted Successfully.')
+    return redirect('view_student')

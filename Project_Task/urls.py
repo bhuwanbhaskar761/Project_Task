@@ -28,4 +28,7 @@ urlpatterns = [
     path('view_student/',view_student,name="view_student"),
     path('login/',Login_User,name="login"),
     path('signup/',signup,name="signup"),
+    path('logout/',Logout,name="logout"),
+    path('delete_student/<int:pid>/',delete_student,name="delete_student"),
+    path('edit_student/<int:pid>/',edit_student,name="edit_student"),
 ]

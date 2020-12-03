@@ -5,8 +5,15 @@
     <title>view_student</title>
 </head>
 <body>
+<a href="{% url 'add_student' %}"><button>Add Student</button></a>(Welcome , {{request.user.username}}) <a href="{% url 'logout' %}"><button>Logout</button></a><br><br>
+
 <h1>view_student</h1>
-<table>
+
+{% for i in messages %}
+<h4 style="color:red">{{i}}</h4>
+{% endfor %}
+
+<table border="1">
     <tr>
         <thead>
         <th>Full Name</th>
@@ -23,7 +30,7 @@
         <td>{{i.stu_class}}</td>
         <td>{{i.roll_no}}</td>
         <td>{{i.address}}</td>
-        <td><a href="">Edit</a> <a href="">Delete</a></td>
+        <td><a href="{% url 'edit_student' i.id %}">Edit</a> <a href="{% url 'delete_student' i.id %}">Delete</a></td>
         </tbody>
     </tr>
     {% endfor %}

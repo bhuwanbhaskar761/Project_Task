@@ -6,10 +6,18 @@
 </head>
 <body>
 <h1>Home</h1>
+
+{% for i in messages %}
+<h4 style="color:red">{{i}}</h4>
+{% endfor %}
+
+
 <h5>Login and Signup Only Use for Teacher. </h5>
+
 <a href="{% url 'login' %}"><button>Login</button></a><br><br>
 <a href="{% url 'signup' %}"><button>Signup</button></a><br><br>
 <hr>
+
 <h5>Student can use for view his data. </h5>
 <a href="{% url 'search_student' %}"><button>Student View Own Detail</button></a>
 

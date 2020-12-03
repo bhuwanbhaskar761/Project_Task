@@ -5,6 +5,7 @@
     <title>Add Student</title>
 </head>
 <body>
+<a href="{% url 'view_student' %}"><button>View Student</button></a>(Welcome , {{request.user.username}})  <a href="{% url 'logout' %}"><button>Logout</button></a><br><br>
 <h4>Add Student</h4>
 <form action="" method="post">
     {% csrf_token %}
