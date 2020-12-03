@@ -22,6 +22,10 @@ urlpatterns = [
     path('teacher/',teacherList.as_view()),
     path('student/',studentList.as_view()),
     path('add_student/',add_student,name='add_student'),
+    path('',home,name='home'),
+    path('teacher_home',teacher_home,name='teacher_home'),
+    path('search_student',search_student,name='search_student'),
     path('view_student/',view_student,name="view_student"),
     path('login/',Login_User,name="login"),
+    path('signup/',signup,name="signup"),
 ]

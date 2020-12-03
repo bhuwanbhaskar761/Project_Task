@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Login Form</title>
 </head>
 <body>
-<h1>Sign Up Form</h1>
+<h1>Login Form</h1>
 {% for i in messages %}
 <h4 style="color:red">{{i}}</h4>
 {% endfor %}
@@ -13,8 +13,6 @@
     {% csrf_token %}
     <input type="text" placeholder="username"  name="name" required><br>
     <input type="password" placeholder="password"  name="pwd" required><br>
-    <input type="password" placeholder="Confirm password"  name="pwd2" required><br>
-    <input type="text" placeholder="Subject"  name="subject" required><br>
     <input type="submit" value="submit">
 </form>
 
